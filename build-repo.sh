@@ -12,7 +12,7 @@ REPO_DIR="$(pwd)"
 POOL_DIR="$REPO_DIR/pool"
 DIST_DIR="$REPO_DIR/dists/$CODENAME/main/binary-$ARCH"
 GPG_KEY_ID="044D5C0B111236912D405133917D04101CDC3CEE"
-INDEX_FILE="$REPO_DIR/index.txt"
+INDEX_FILE="$REPO_DIR/INDEX.txt"
 
 # --------------------------
 # CLEANUP
@@ -89,15 +89,19 @@ echo "[✓] Repository updated."
 # INDEXING
 # --------------------------
 
-echo "[*] Creating repository index ..."
-echo "komed3.deb Repository – $(date -u +'%Y-%m-%d %H:%M UTC')" > "$INDEX_FILE"
-echo "" >> "$INDEX_FILE"
+printf "%-40s %-10s %-20s %-64s %-20s\n" "Filename" "Size" "Modified" "SHA256" "Package-Version"
+printf "%-40s %-10s %-20s %-64s %-20s\n" "--------" "----" "--------" "------" "---------------"
+
 find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
     name=$(basename "$deb")
-    size=$(stat -c%s "$deb")
+    size_bytes=$(stat -c%s "$deb")
+    size_human=$(numfmt --to=iec --suffix=B "$size_bytes")
     mtime=$(stat -c%y "$deb" | cut -d'.' -f1)
-    echo "$name – $(numfmt --to=iec --suffix=B "$size") – $mtime" >> "$INDEX_FILE"
-done
+    sha256=$(sha256sum "$deb" | cut -d' ' -f1)
+    pkg=$(dpkg-deb -f "$deb" Package)
+    ver=$(dpkg-deb -f "$deb" Version)
+    printf "%-40s %-10s %-20s %-64s %-20s\n" "$name" "$size_human" "$mtime" "$sha256" "$pkg-$ver"
+done > "$INDEX_FILE"
 
 # --------------------------
 # COMMIT

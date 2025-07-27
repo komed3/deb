@@ -1,3 +1,6 @@
+# Set charset to UTF-8
+AddDefaultCharset UTF-8
+
 # Enable directory listing
 Options +Indexes
 IndexOptions +FancyIndexing +HTMLTable +SuppressHTMLPreamble
