@@ -58,6 +58,15 @@ sudo apt update
 sudo apt install <package-name>
 ```
 
+## Maintenance Workflow
+
+This repository is updated via the `build-repo.sh` script, which:
+
+- Adds new `.deb` files to the `pool/`
+- Generates `Packages.gz`, `Release`, and `InRelease`
+- Signs metadata with GPG
+- Commits and pushes changes to GitHub
+
 ## License
 
 This metadata repository contains no software, only packaging and signatures. License of hosted packages is defined per-package in `debian/copyright`.
