@@ -1,0 +1,24 @@
+Origin: komed3
+Label: komed3
+Suite: stable
+Codename: stable
+Architectures: amd64
+Components: main
+Description: Komed3 Software Repository
+Date: Sun, 27 Jul 2025 12:40:51 +0000
+MD5Sum:
+ 35172be4bdc7df4fd19ae5682dcf71e3              176 Release
+ 8918cca6039ee5af0629908cce9fb961              649 main/binary-amd64/Packages
+ 66c75a403b1c1369f382d885a98f6a85              448 main/binary-amd64/Packages.gz
+SHA1:
+ 097e5e64a10ff3599dd0149b8b88388fa8735db1              176 Release
+ 4014ed55f6161ac7ed906e2140a2e404cb056856              649 main/binary-amd64/Packages
+ c61a43a6c05a056b16daa25d5e288a2b9dc683ca              448 main/binary-amd64/Packages.gz
+SHA256:
+ d260182a68ff3f0f03be12503ff5c6a844d425b98b3a4b36c23e38a45f4eb182              176 Release
+ 70013253f202b800861ae6a51b61805f415f666a39388f5df2176b71f2303e58              649 main/binary-amd64/Packages
+ bb220ef8c96feba67524d457993d175676950e18859a7d5989f646ab2e5d1306              448 main/binary-amd64/Packages.gz
+SHA512:
+ 1daa639b2f8181fb0109392914a0cc33dd6fef26d2001ed9ef643229a4837f03fb2b10b1ce3d209ed30db56406f3e058386b471040fcdd0396c9897fde50ddce              176 Release
+ 5a6cc4c90b0bda0f590c29e2507cb92fac4a6b635fb07a0a8a3cac9b04d2e731df6032692631627c9156ef54508ce3f30ab36c013c4ecd6d7c721c96b370eb10              649 main/binary-amd64/Packages
+ 54574a080baf92eba8b4dd61205a27c8ddd3588f615e5b0dfeed751fd8f7ae2387d0fcd8218cb4783dabcc2821ac36881f5d59dbaea2f5fff129fcf9cf5b869b              448 main/binary-amd64/Packages.gz
