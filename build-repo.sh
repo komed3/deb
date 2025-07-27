@@ -7,7 +7,7 @@ set -e
 
 CODENAME="stable"
 DIST="komed3"
-ARCH="all"
+ARCH="amd64"
 REPO_DIR="$(pwd)"
 POOL_DIR="$REPO_DIR/pool"
 DIST_DIR="$REPO_DIR/dists/$CODENAME/main/binary-$ARCH"
