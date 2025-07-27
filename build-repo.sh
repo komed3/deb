@@ -92,8 +92,8 @@ echo "[✓] Repository updated."
 echo "[*] Creating formatted repository index ..."
 
 {
-    printf "%-40s %-10s %-20s %-64s %-20s\n" "Filename" "Size" "Modified" "SHA256" "Package-Version"
-    printf "%-40s %-10s %-20s %-64s %-20s\n" "--------" "----" "--------" "------" "---------------"
+    printf "%-40s %-10s %-20s %-64s %-20s\n" "Package" "Size" "Modified" "SHA256" "Package-Version"
+    printf "%-40s %-10s %-20s %-64s %-20s\n" "-------" "----" "--------" "------" "---------------"
 
     find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
         name=$( basename "$deb" )
