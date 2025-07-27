@@ -20,23 +20,23 @@ INDEX_FILE="$REPO_DIR/INDEX.txt"
 
 echo "[*] Check for outdated .deb versions ..."
 
-mapfile -t pkg_files < <(find "$POOL_DIR" -type f -name "*.deb" | sort)
+mapfile -t pkg_files < <( find "$POOL_DIR" -type f -name "*.deb" | sort )
 
 declare -A latest_versions
 
 for deb_path in "${pkg_files[@]}"; do
-    pkg_info=$(dpkg-deb -f "$deb_path" Package Version)
-    pkg_name=$(echo "$pkg_info" | sed -n '1p')
-    pkg_ver=$(echo "$pkg_info" | sed -n '2p')
+    pkg_info=$( dpkg-deb -f "$deb_path" Package Version )
+    pkg_name=$( echo "$pkg_info" | sed -n '1p' )
+    pkg_ver=$( echo "$pkg_info" | sed -n '2p' )
 
     if [[ -n "${latest_versions[$pkg_name]+x}" ]]; then
         if dpkg --compare-versions "$pkg_ver" gt "${latest_versions[$pkg_name]%|*}"; then
             old_path="${latest_versions[$pkg_name]#*|}"
-            echo "    Removing old version: $old_path"
+            echo " ... Removing old version: $old_path"
             rm -f "$old_path"
             latest_versions[$pkg_name]="$pkg_ver|$deb_path"
         else
-            echo "    Removing outdated: $deb_path"
+            echo " ... Removing outdated: $deb_path"
             rm -f "$deb_path"
         fi
     else
@@ -96,13 +96,13 @@ echo "[*] Creating formatted repository index ..."
     printf "%-40s %-10s %-20s %-64s %-20s\n" "--------" "----" "--------" "------" "---------------"
 
     find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
-        name=$(basename "$deb")
-        size_bytes=$(stat -c%s "$deb")
-        size_human=$(numfmt --to=iec --suffix=B "$size_bytes")
-        mtime=$(stat -c%y "$deb" | cut -d'.' -f1)
-        sha256=$(sha256sum "$deb" | cut -d' ' -f1)
-        pkg=$(dpkg-deb -f "$deb" Package)
-        ver=$(dpkg-deb -f "$deb" Version)
+        name=$( basename "$deb" )
+        size_bytes=$( stat -c%s "$deb" )
+        size_human=$( numfmt --to=iec --suffix=B "$size_bytes" )
+        mtime=$( stat -c%y "$deb" | cut -d'.' -f1 )
+        sha256=$( sha256sum "$deb" | cut -d' ' -f1 )
+        pkg=$( dpkg-deb -f "$deb" Package )
+        ver=$( dpkg-deb -f "$deb" Version )
         printf "%-40s %-10s %-20s %-64s %-20s\n" "$name" "$size_human" "$mtime" "$sha256" "$pkg-$ver"
     done
 } > "$INDEX_FILE"
@@ -120,7 +120,7 @@ if git diff --quiet && git diff --cached --quiet; then
     echo "[✓] Nothing to commit."
 else
     git add .
-    git commit -S -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")"
+    git commit -S -m "Update repository: $( date -u +"%Y-%m-%d %H:%M UTC" )"
     git push origin master
     echo "[✓] Successfully committed."
 fi
