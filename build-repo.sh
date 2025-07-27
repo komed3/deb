@@ -57,8 +57,11 @@ echo "[✓] Repository updated."
 # COMMIT
 # --------------------------
 
+echo "[*] Commit changes ..."
 cd "$REPO_DIR"
 
 git add .
 git commit -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")"
 git push origin master
+
+echo "[✓] Successfully commited."
