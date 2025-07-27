@@ -1,0 +1,50 @@
+<h1>komed3 APT Repository</h1>
+
+This is the official APT package repository for selected Debian/Ubuntu packages maintained by <a href="https://komed3.de">komed3</a>. It provides signed <code>.deb</code> packages for easy installation and updates via <code>apt</code>.<br /><br />
+Packages are served via HTTP and can be added to any APT-compatible system (Debian or Ubuntu) using the instructions below.
+
+<h2>GPG Signing Key</h2>
+
+All packages are signed using a dedicated GPG key:
+
+<ul>
+<li><b>Key ID:</b> <code>0x917D04101CDC3CEE</code></li>
+<li><b>Fingerprint:</b> <code>044D 5C0B 1112 3691 2D40  5133 917D 0410 1CDC 3CEE</code></li>
+<li><b>Public Key:</b> <a href="https://deb.komed3.de/komed3-repo.gpg.key">komed3-repo.gpg.key</a></li>
+</ul>
+
+To import the key:
+
+<pre>
+curl -fsSL https://deb.komed3.de/komed3-repo.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/komed3.gpg
+</pre>
+
+<h2>How to Use</h2>
+
+To use the repository on your system:
+
+<h4>(1) Add GPG key and APT source:</h4>
+
+<pre>
+echo "deb [signed-by=/usr/share/keyrings/komed3.gpg arch=amd64] https://deb.komed3.de stable main" \
+  | sudo tee /etc/apt/sources.list.d/komed3.list
+</pre>
+
+<h4>(2) Update and install any available package:</h4>
+
+<pre>
+sudo apt update
+sudo apt install <package-name>
+</pre>
+
+<h2>License</h2>
+
+This metadata repository contains no software, only packaging and signatures. License of hosted packages is defined per-package in <code>debian/copyright</code>.
+
+<h2>Maintainer</h2>
+
+This repository is maintained by Paul Köhler (<a href="https://komed3.de">komed3</a>).
+
+<b>Mail:</b> <a href="mailto:deb@komed3.de">deb@komed3.de</a><br />
+<b>GitHub:</b> <a href="https://github.com/komed3">github.com/komed3</a><br />
+<b>X:</b> <a href="https://x.com/komed3dev">@komed3dev</a>

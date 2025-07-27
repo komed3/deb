@@ -12,9 +12,9 @@ Packages are served via HTTP and can be added to any APT-compatible system (Debi
 
 All packages are signed using a dedicated GPG key:
 
-- **Key ID**: `0x917D04101CDC3CEE`
-- **Fingerprint**: `044D 5C0B 1112 3691 2D40  5133 917D 0410 1CDC 3CEE`
-- **Public Key**: [komed3-repo.gpg.key](https://deb.komed3.de/komed3-repo.gpg.key)
+- **Key ID:** `0x917D04101CDC3CEE`
+- **Fingerprint:** `044D 5C0B 1112 3691 2D40  5133 917D 0410 1CDC 3CEE`
+- **Public Key:** [komed3-repo.gpg.key](https://deb.komed3.de/komed3-repo.gpg.key)
 
 To import the key:
 

@@ -1,5 +1,7 @@
 # Enable directory listing
 Options +Indexes
+IndexOptions +FancyIndexing +HTMLTable +SuppressHTMLPreamble
+ReadmeName README
 
 # Set correct content type
 AddType application/x-debian-package .deb
