@@ -37,7 +37,7 @@ EOF
 apt-ftparchive release "$REPO_DIR/dists/$CODENAME" >> "$REPO_DIR/dists/$CODENAME/Release"
 
 # --------------------------
-# Sign with GPG
+# SIGNING
 # --------------------------
 
 if gpg --list-keys "$GPG_KEY_ID" >/dev/null 2>&1; then
@@ -52,3 +52,13 @@ else
 fi
 
 echo "[✓] Repository updated."
+
+# --------------------------
+# COMMIT
+# --------------------------
+
+cd "$REPO_DIR"
+
+git add .
+git commit -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")"
+git push origin master
