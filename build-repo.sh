@@ -109,8 +109,6 @@ cd "$REPO_DIR"
 if git diff --quiet && git diff --cached --quiet; then
     echo "[✓] Nothing to commit."
 else
-    git config user.name "komed3"
-    git config user.email "webmaster@komed3.de"
     git add .
     git commit -S -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")"
     git push origin master
