@@ -6,9 +6,9 @@ Maintainer: Paul Köhler (komed3) <deb@komed3.de>
 Depends: bash, coreutils
 Filename: pool/main/f/filecomp/filecomp_0.1.0_all.deb
 Size: 13356
-MD5sum: 6d3904835c41a2ee30b7bdf8769ecda5
-SHA1: 3cac22b8657f7e928eb133a8dc25dee33a161e7d
-SHA256: d036fcfa136f835639f4f19f141051139602b7c49cb623bf800219fa6ad6f60f
+MD5sum: d4ad470291624a289243ed2f5bbf446c
+SHA1: d29db7a469ea00b76a3891c58f27bad0af2edc41
+SHA256: 96f76d7381a1b8fc221a71733238f57815349efd4390bb4daca608021691a54e
 Section: utils
 Priority: optional
 Homepage: https://github.com/komed3/filecomp
