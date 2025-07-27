@@ -1,0 +1,8 @@
+# Enable directory listing
+Options +Indexes
+
+# Set correct content type
+AddType application/x-debian-package .deb
+
+# Allow access to .gpg/.asc files
+AddType application/pgp-signature .gpg .asc
