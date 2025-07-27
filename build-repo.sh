@@ -12,7 +12,7 @@ REPO_DIR="$(pwd)"
 POOL_DIR="$REPO_DIR/pool"
 DIST_DIR="$REPO_DIR/dists/$CODENAME/main/binary-$ARCH"
 GPG_KEY_ID="044D5C0B111236912D405133917D04101CDC3CEE"
-INDEX_FILE="$REPO_DIR/REPO-INDEX.html"
+INDEX_FILE="$REPO_DIR/index.txt"
 
 # --------------------------
 # CLEANUP
@@ -45,23 +45,6 @@ for deb_path in "${pkg_files[@]}"; do
 done
 
 # --------------------------
-# INDEXING
-# --------------------------
-
-echo "[*] Create custom index file ..."
-{
-    echo "<!DOCTYPE html><html><head><meta charset='utf-8'><title>komed3 Repository</title></head><body>"
-    echo "<h1>komed3 APT Repository Index</h1><ul>"
-
-    for file in $(find "$POOL_DIR" -type f -name "*.deb" | sort); do
-        rel_path="${file#$REPO_DIR/}"
-        echo "<li><a href=\"$rel_path\">$rel_path</a></li>"
-    done
-
-    echo "</ul><p>Update: $(date -u '+%Y-%m-%d %H:%M UTC')</p></body></html>"
-} > "$INDEX_FILE"
-
-# --------------------------
 # PREP
 # --------------------------
 
@@ -69,7 +52,8 @@ echo "[*] Create directory structure ..."
 mkdir -p "$DIST_DIR"
 
 echo "[*] Create package file ..."
-dpkg-scanpackages "$POOL_DIR" "pool" | tee "$DIST_DIR/Packages" | gzip -9 > "$DIST_DIR/Packages.gz"
+dpkg-scanpackages -m pool > "$DIST_DIR/Packages"
+gzip -9 -c "$DIST_DIR/Packages" > "$DIST_DIR/Packages.gz"
 
 echo "[*] Generate release file ..."
 cat > "$REPO_DIR/dists/$CODENAME/Release" <<EOF
@@ -102,14 +86,31 @@ fi
 echo "[✓] Repository updated."
 
 # --------------------------
+# INDEXING
+# --------------------------
+
+echo "[*] Creating repository index ..."
+echo "komed3.deb Repository – $(date -u +'%Y-%m-%d %H:%M UTC')" > "$INDEX_FILE"
+echo "" >> "$INDEX_FILE"
+find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
+    name=$(basename "$deb")
+    size=$(stat -c%s "$deb")
+    mtime=$(stat -c%y "$deb" | cut -d'.' -f1)
+    echo "$name – $(numfmt --to=iec --suffix=B "$size") – $mtime" >> "$INDEX_FILE"
+done
+
+# --------------------------
 # COMMIT
 # --------------------------
 
 echo "[*] Commit changes via Git (signed if configured) ..."
 cd "$REPO_DIR"
 
-git add .
-git commit -S -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")" || echo "No changes to commit."
-git push origin master
-
-echo "[✓] Git commit pushed."
+if git diff --quiet && git diff --cached --quiet; then
+    echo "[✓] Nothing to commit."
+else
+    git add .
+    git commit -S -m "Update repository: $(date -u +"%Y-%m-%d %H:%M UTC")"
+    git push origin master
+    echo "[✓] Successfully committed."
+fi
