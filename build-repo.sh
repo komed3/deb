@@ -89,20 +89,23 @@ echo "[✓] Repository updated."
 # INDEXING
 # --------------------------
 
-echo "[*] Indexing packages ..."
-printf "%-40s %-10s %-20s %-64s %-20s\n" "Filename" "Size" "Modified" "SHA256" "Package-Version" > "$INDEX_FILE"
-printf "%-40s %-10s %-20s %-64s %-20s\n" "--------" "----" "--------" "------" "---------------" > "$INDEX_FILE"
+echo "[*] Creating formatted repository index ..."
 
-find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
-    name=$(basename "$deb")
-    size_bytes=$(stat -c%s "$deb")
-    size_human=$(numfmt --to=iec --suffix=B "$size_bytes")
-    mtime=$(stat -c%y "$deb" | cut -d'.' -f1)
-    sha256=$(sha256sum "$deb" | cut -d' ' -f1)
-    pkg=$(dpkg-deb -f "$deb" Package)
-    ver=$(dpkg-deb -f "$deb" Version)
-    printf "%-40s %-10s %-20s %-64s %-20s\n" "$name" "$size_human" "$mtime" "$sha256" "$pkg-$ver"
-done > "$INDEX_FILE"
+{
+    printf "%-40s %-10s %-20s %-64s %-20s\n" "Filename" "Size" "Modified" "SHA256" "Package-Version"
+    printf "%-40s %-10s %-20s %-64s %-20s\n" "--------" "----" "--------" "------" "---------------"
+
+    find "$POOL_DIR" -type f -name "*.deb" | sort | while read -r deb; do
+        name=$(basename "$deb")
+        size_bytes=$(stat -c%s "$deb")
+        size_human=$(numfmt --to=iec --suffix=B "$size_bytes")
+        mtime=$(stat -c%y "$deb" | cut -d'.' -f1)
+        sha256=$(sha256sum "$deb" | cut -d' ' -f1)
+        pkg=$(dpkg-deb -f "$deb" Package)
+        ver=$(dpkg-deb -f "$deb" Version)
+        printf "%-40s %-10s %-20s %-64s %-20s\n" "$name" "$size_human" "$mtime" "$sha256" "$pkg-$ver"
+    done
+} > "$INDEX_FILE"
 
 echo "[✓] Packages successfully indexed."
 

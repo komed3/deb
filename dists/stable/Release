@@ -5,20 +5,20 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Komed3 Software Repository
-Date: Sun, 27 Jul 2025 14:46:22 +0000
+Date: Sun, 27 Jul 2025 14:48:30 +0000
 MD5Sum:
- 677208bb3f85cc2a1dca8719dfea52ab              176 Release
- 26d95c7d1d25fe769eaa8f284daa5a6c              613 main/binary-amd64/Packages
- ab6cab8c0016996aec67c9a8e938c343              432 main/binary-amd64/Packages.gz
+ 6011d4a1c71cdfb120bfeb84141b43b9              176 Release
+ edb4f00f5613678e48a1b486b4241a3e              613 main/binary-amd64/Packages
+ f6387c14375e2a24039eaf4c21d2015f              433 main/binary-amd64/Packages.gz
 SHA1:
- 4f13d5697722446e73effe93d55795d0f1a57a34              176 Release
- 4d96371f30002db048c4b81d5e61fac02a974c87              613 main/binary-amd64/Packages
- 08f34d969cfbdda54670086601ec61ab40f883c4              432 main/binary-amd64/Packages.gz
+ 953edfdab0ad70c4a92db2db98759625f2081003              176 Release
+ e63ca807a0fa6781eea75c1122428b3d4e6c0a08              613 main/binary-amd64/Packages
+ 6afb7f0b8166256d3aa1b29c38b720167d83afb0              433 main/binary-amd64/Packages.gz
 SHA256:
- 1b767c6a6076d02d1d47dec8eb4774025af5f2d13602a475cbd43b1482c4684b              176 Release
- 33e40cfd215181cc4e8f9fc47ec5f11dfb5d61de60a2c7c91c661c03ffb21c64              613 main/binary-amd64/Packages
- 0e059c9f38d1331e20ca02313f361075f26b674af024490ea6bd0d307f5bd829              432 main/binary-amd64/Packages.gz
+ ec06dbacead534445a66f8bcc0bc7bedbe0e2cdf5f13c2ac943cbb1dc9528a30              176 Release
+ 8dead1d43311af6d2e6b85bd16da08e1c5d373f75e7d05761c3fdb797334e288              613 main/binary-amd64/Packages
+ 3e6fe506428955f17c15191fd352a87e35bfa5416b6f9e83188e8d5d17cfca2c              433 main/binary-amd64/Packages.gz
 SHA512:
- 1a02790619962b2463cbfbdfbcb948b8901cd555f2c69a95c8ea395d939a2df3beb131ecf8419d6ffbca658c470135cb1946c29e8884f11693da8e11b754fa7f              176 Release
- 4cd553cbfcb168ddba112909020a4e4cd24de39bcd45ac110fa0cc69d46c8c83bc247c7904013f88f03660e29bd62f6bb28b69a48ff025bb11f30120b3a4ec94              613 main/binary-amd64/Packages
- 4c7a01976bba5610307b7d107b0d5bafd089b0c769384fa111686c4095a88337bf7674c66937e0d5b9e1ea5adc061f69ddb2c1ef9a2f8c6ac5520c3364674cad              432 main/binary-amd64/Packages.gz
+ 39189de13281a1679195f466e0433a23a37f23cb10d9c77bccae7dc9ea131d87d0c63f3afe6632020b5053d2b1972acb8ef2eca5d861a23c052ed46a5b83cfcc              176 Release
+ 54f9b4ed0dfce313b293c4a58fe7db2e958ebc5d2470522169c6954e1a2c144a73e176b567fb03acd9dd93bd08bcc6453ec6f1a0858c0428690b070114120794              613 main/binary-amd64/Packages
+ 994e05fca53c164786e64c43608d2b1473e589c8c92a449cd579f739ddf9d135410969e0514fc7998d8c735630f6d8410c766ad9debb2e0f06589b908e0f8cf8              433 main/binary-amd64/Packages.gz
